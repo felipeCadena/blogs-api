@@ -26,7 +26,7 @@ module.exports = async (req, res, next) => {
       return res.status(401).json({ message: 'User not found' });
     }
 
-    req.user = user;
+    req.user = user.dataValues;
 
     next();
   } catch (err) {
