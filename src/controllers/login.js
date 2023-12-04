@@ -1,5 +1,5 @@
 const { LoginService } = require('../services');
-const { generateToken } = require('./utils/validateCredentials');
+const { generateToken } = require('./utils/token');
 
 const validBody = (email, password) => email && password;
 
@@ -12,12 +12,12 @@ module.exports = async (req, res) => {
     }
 
     const user = await LoginService.getByUserEmail(email);
-
+    
     if (!user || user.password !== password) {
       return res.status(400).json({ message: 'Invalid fields' });
     }
-
-    const token = generateToken(user);
+    
+    const token = generateToken(user.dataValues.id);
 
     res.status(200).json({ token });
   } catch (err) {
