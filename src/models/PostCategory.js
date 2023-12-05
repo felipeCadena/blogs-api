@@ -1,10 +1,9 @@
 module.exports = (sequelize, DataTypes) => {
   const PostCategory = sequelize.define(
-  'PostCategories',
+  'PostCategory',
   { 
-    post_id: {
+    postId: {
       type: DataTypes.INTEGER,
-      field: 'post_id',
       references: {
         model: 'blog_posts',
         key: 'id',
@@ -12,9 +11,8 @@ module.exports = (sequelize, DataTypes) => {
       onUpdate: 'CASCADE',
       onDelete: 'CASCADE',
     },
-    category_id: {
+    categoryId: {
       type: DataTypes.INTEGER,
-      field: 'category_id',
       references: {
         model: 'categories',
         key: 'id',
@@ -30,17 +28,17 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   PostCategory.associate = (models) => {
-    models.BlogPosts.belongsToMany(models.Category, {
+    models.BlogPost.belongsToMany(models.Category, {
       as: 'categories',
       through: PostCategory,
-      foreignKey: 'post_id', 
-      otherKey: 'category_id', 
+      foreignKey: 'postId', 
+      otherKey: 'categoryId', 
     });
-    models.Category.belongsToMany(models.BlogPosts, {
+    models.Category.belongsToMany(models.BlogPost, {
       as: 'blog_posts',
       through: PostCategory,
-      foreignKey: 'category_id',
-      otherKey: 'post_id',
+      foreignKey: 'categoryId',
+      otherKey: 'postId',
     });
   }
 

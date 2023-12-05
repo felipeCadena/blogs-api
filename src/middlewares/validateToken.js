@@ -19,9 +19,8 @@ module.exports = async (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, secret);
-
     const user = await LoginService.getByUserId(decoded.data.userId);
-
+    
     if (!user) {
       return res.status(401).json({ message: 'User not found' });
     }

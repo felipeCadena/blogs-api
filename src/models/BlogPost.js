@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const BlogPost = sequelize.define(
-  'BlogPosts',
+  'BlogPost',
   { 
     id: { 
       type: DataTypes.INTEGER,
@@ -10,9 +10,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     title: DataTypes.STRING,
     content: DataTypes.STRING,
-    user_id: {
+    userId: {
       type: DataTypes.INTEGER,
-      field: 'user_id',
       references: {
         model: 'Users',
         key: 'id',
