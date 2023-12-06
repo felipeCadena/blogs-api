@@ -12,8 +12,7 @@ module.exports = async (req, res, next) => {
   }
 
   const userExist = await LoginService.getByUserEmail(email);
-  console.log(userExist);
-
+  
   if (userExist) {
     return res.status(409).json({ message: 'User already registered' });
   }
