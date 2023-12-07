@@ -7,7 +7,8 @@ const { LoginController,
   GetCategoriesController,
   CreatePostController,
   GetAllPosts,
-  GetPostById, UpdatePost } = require('./controllers');
+  GetPostById, UpdatePost,
+  DeletePost, DeleteUser, SearchPost } = require('./controllers');
 const validateUser = require('./middlewares/validateUser');
 const validateToken = require('./middlewares/validateToken');
 const validateCategories = require('./middlewares/validateCategories');
@@ -21,6 +22,7 @@ app.get('/', (_request, response) => {
 
 app.use(express.json());
 
+app.get('/post/search', validateToken, SearchPost);
 app.post('/login', LoginController);
 app.get('/user', validateToken, GetUsersController);
 app.post('/user', validateUser, CreateUserController);
@@ -31,6 +33,8 @@ app.post('/post', validateToken, validateCategories, CreatePostController);
 app.get('/post', validateToken, GetAllPosts);
 app.get('/post/:id', validateToken, GetPostById);
 app.put('/post/:id', validateToken, UpdatePost);
+app.delete('/post/:id', validateToken, DeletePost);
+app.delete('/user/me', validateToken, DeleteUser);
 
 // É importante exportar a constante `app`,
 // para que possa ser utilizada pelo arquivo `src/server.js`

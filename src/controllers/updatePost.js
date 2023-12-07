@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
       .json({ message: 'Some required fields are missing' }); 
   }
 
-  if (userId !== dataValues.id) return res.status(401).json({ message: 'Unauthorized user' });
+  if (userId !== dataValues.userId) return res.status(401).json({ message: 'Unauthorized user' });
 
   try {
     await PostService.updatePost({ id, title, content });

@@ -1,5 +1,5 @@
 const { validateCredentials } = require('../controllers/utils/validateCredentials');
-const { LoginService } = require('../services');
+const { UserService } = require('../services');
 
 module.exports = async (req, res, next) => {
   const { email } = req.body;
@@ -11,7 +11,7 @@ module.exports = async (req, res, next) => {
     return res.status(400).json({ message: error.message });
   }
 
-  const userExist = await LoginService.getByUserEmail(email);
+  const userExist = await UserService.getByUserEmail(email);
   
   if (userExist) {
     return res.status(409).json({ message: 'User already registered' });

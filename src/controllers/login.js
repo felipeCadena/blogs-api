@@ -1,4 +1,4 @@
-const { LoginService } = require('../services');
+const { UserService } = require('../services');
 const { generateToken } = require('./utils/token');
 
 const validBody = (email, password) => email && password;
@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
       return res.status(400).json({ message: 'Some required fields are missing' });
     }
 
-    const user = await LoginService.getByUserEmail(email);
+    const user = await UserService.getByUserEmail(email);
     
     if (!user || user.password !== password) {
       return res.status(400).json({ message: 'Invalid fields' });

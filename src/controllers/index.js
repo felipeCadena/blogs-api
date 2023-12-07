@@ -8,6 +8,9 @@ const CreatePostController = require('./createPost');
 const GetAllPosts = require('./getPosts');
 const GetPostById = require('./getPostById');
 const UpdatePost = require('./updatePost');
+const DeletePost = require('./deletePost');
+const DeleteUser = require('./deleteUser');
+const SearchPost = require('./searchPost');
 
 module.exports = {
   LoginController,
@@ -20,4 +23,7 @@ module.exports = {
   GetAllPosts,
   GetPostById,
   UpdatePost,
+  DeletePost,
+  DeleteUser,
+  SearchPost,
 };

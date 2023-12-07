@@ -1,10 +1,10 @@
-const LoginService = require('./login');
+const UserService = require('./user');
 const CategoryService = require('./category');
 const PostService = require('./post');
 const PostCategoryService = require('./postCategory');
 
 module.exports = {
-  LoginService,
+  UserService,
   CategoryService,
   PostService,
   PostCategoryService,

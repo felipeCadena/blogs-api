@@ -1,11 +1,11 @@
-const { LoginService } = require('../services');
+const { UserService } = require('../services');
 const { generateToken } = require('./utils/token');
 
 module.exports = async (req, res) => {
   const { displayName, email, password, image } = req.body;
 
   try {
-    const user = await LoginService.createUser({ displayName, email, password, image });
+    const user = await UserService.createUser({ displayName, email, password, image });
 
     if (!user) throw Error;
 
